@@ -285,12 +285,12 @@ rule-anchor:
 # ================================================================
 rule-providers:
   # 自定义规则
-  my_dpi: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/Network-Config@main/clash/rules/my_dpi.yaml", <<: *classical}
-  my_tencent: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/Network-Config@main/clash/rules/my_tencent.yaml", <<: *classical}
-  my_rules_direct: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/Network-Config@main/clash/rules/my_rules_direct.yaml", <<: *classical}
-  my_rules_proxy: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/Network-Config@main/clash/rules/my_rules_proxy.yaml", <<: *classical}
-  my_scholar_direct: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/Network-Config@main/clash/rules/my_scholar_direct.yaml", <<: *classical}
-  my_scholar_proxy: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/Network-Config@main/clash/rules/my_scholar_proxy.yaml", <<: *classical}
+  my_dpi: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rules/my_dpi.yaml", <<: *classical}
+  my_tencent: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rules/my_tencent.yaml", <<: *classical}
+  my_rules_direct: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rules/my_rules_direct.yaml", <<: *classical}
+  my_rules_proxy: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rules/my_rules_proxy.yaml", <<: *classical}
+  my_scholar_direct: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rules/my_scholar_direct.yaml", <<: *classical}
+  my_scholar_proxy: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rules/my_scholar_proxy.yaml", <<: *classical}
 
   # MetaCubeX MRS 规则
   google: {url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs", <<: *domain}
