@@ -1,0 +1,101 @@
+payload:
+  # ============================================================================
+  # [ UA3F Process ]
+  # ============================================================================
+  # - PROCESS-NAME,subs-check.exe
+  # - PROCESS-NAME,subs-check
+
+  # ============================================================================
+  # [ 教育网 & 杂项 / Education & Misc ]
+  # ============================================================================
+  - DOMAIN-SUFFIX,edu.cn
+  - IP-CIDR,202.114.0.0/16,no-resolve
+  - DOMAIN,ua.233996.xyz
+  - DOMAIN,ua-check.stagoh.com
+
+  # ============================================================================
+  # [ Cloudflare 优选域名 / Preferred Domains ]
+  # ============================================================================
+  - DOMAIN-SUFFIX,cf.090227.xyz
+  - DOMAIN-SUFFIX,cdn.2020111.xyz
+  - DOMAIN-SUFFIX,saas.sin.fan
+  - DOMAIN-SUFFIX,cf.tencentapp.cn
+  - DOMAIN-SUFFIX,bestcf.top
+  - DOMAIN-SUFFIX,bestcf.030101.xyz
+  - DOMAIN-SUFFIX,freeyx.cloudflare88.eu.org
+  - DOMAIN-SUFFIX,cf.877774.xyz
+  - DOMAIN-SUFFIX,cf.3666888.xyz
+  - DOMAIN-SUFFIX,cf.996616.xyz
+  - DOMAIN-SUFFIX,cf.cloudflare.182682.xyz
+  - DOMAIN-SUFFIX,ddk.cfyx.20237737.xyz
+  - DOMAIN-SUFFIX,cloudflare-dl.byoip.top
+  - DOMAIN-SUFFIX,staticdelivery.nexusmods.com
+
+  # ============================================================================
+  # [ Emby ]
+  # ============================================================================
+  # 暂无规则
+
+  # ============================================================================
+  # [ 国内 DNS 直连 / Local DNS ]
+  # ============================================================================
+
+  # >>> 114 DNS -------------------------------------------------------------
+  # Site: https://www.114dns.com
+  # IP:   114.114.114.114 | 114.114.115.115
+  - IP-CIDR,114.114.114.114/32,no-resolve
+  - IP-CIDR,114.114.115.115/32,no-resolve
+
+  # >>> 腾讯 DNS (Tencent) ---------------------------------------------------
+  # Site: https://www.dnspod.cn/products/publicdns
+  # IP:   119.29.29.29 | 119.28.28.28
+  # DoH:  https://doh.pub/dns-query | https://sm2.doh.pub/dns-query
+  # DoT:  tls://dot.pub
+  - IP-CIDR,119.29.29.29/32,no-resolve
+  - IP-CIDR,119.28.28.28/32,no-resolve
+  - IP-CIDR6,2402:4e00::/32,no-resolve
+  # 免费版 DoH、DoT 不再公开 IP 地址，改为域名解析
+  - IP-CIDR,1.12.12.12/32,no-resolve
+  - IP-CIDR,120.53.53.53/32,no-resolve
+  - DOMAIN,doh.pub
+  - DOMAIN,sm2.doh.pub
+  - DOMAIN,dot.pub
+
+  # >>> 阿里 DNS (Aliyun) ----------------------------------------------------
+  # Site: https://www.alidns.com
+  # IP:   223.5.5.5 | 223.6.6.6
+  # DoH:  https://dns.alidns.com/dns-query
+  #       https://223.5.5.5/dns-query
+  #       https://223.6.6.6/dns-query
+  # QUIC: quic://dns.alidns.com | quic://223.5.5.5 | quic://223.6.6.6
+  # DoT:  tls://dns.alidns.com | tls://223.5.5.5 | tls://223.6.6.6
+  - IP-CIDR,223.5.5.5/32,no-resolve
+  - IP-CIDR,223.6.6.6/32,no-resolve
+  - IP-CIDR6,2400:3200::1/32,no-resolve
+  - IP-CIDR6,2400:3200:baba::1/32,no-resolve
+  - DOMAIN,dns.alidns.com
+
+  # >>> 360 安全 DNS ---------------------------------------------------------
+  # Site: https://dns.360.cn
+  # IP:   101.226.4.6 | 218.30.118.6 (电信/移动/铁通)
+  #       123.125.81.6 | 140.207.198.6 (联通)
+  # DoH:  https://doh.360.cn/dns-query
+  # DoT:  tls://dot.360.cn
+  - IP-CIDR,101.226.4.6/32,no-resolve
+  - IP-CIDR,218.30.118.6/32,no-resolve
+  - IP-CIDR,123.125.81.6/32,no-resolve
+  - IP-CIDR,140.207.198.6/32,no-resolve
+  - DOMAIN,doh.360.cn
+  - DOMAIN,dot.360.cn
+
+  # ============================================================================
+  # [ Easytier ]
+  # ============================================================================
+  - DST-PORT,11010
+  - DST-PORT,11011
+  - DST-PORT,11012
+
+  # ============================================================================
+  # [ 自定义 / Custom ]
+  # ============================================================================
+  - DOMAIN,alice.dns-dynamic.net

@@ -1,0 +1,124 @@
+# NAME: Scholar (Filtered for China)
+# AUTHOR: blackmatrix7 (Filtered by Gemini)
+# REPO: https://github.com/blackmatrix7/ios_rule_script
+# UPDATED: 2025-08-03 05:57:00
+# DESCRIPTION: 专为中国教育网用户优化，用于代理访问被屏蔽或连接缓慢的学术网站。该列表不包含需要学校IP认证的商业数据库。
+# from https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Clash/Scholar
+payload:
+  ## --------------------------------------------------------------
+  ## Part 1: 必须使用代理的网站 (Directly Blocked Sites)
+  ## --------------------------------------------------------------
+
+  # 谷歌学术 (被屏蔽)
+  - DOMAIN,scholar.google.com
+
+  # Z-Library, Sci-Hub 等影子图书馆 (被屏蔽)
+  - DOMAIN-SUFFIX,1lib.cloud
+  - DOMAIN-SUFFIX,1lib.domains
+  - DOMAIN-SUFFIX,1lib.education
+  - DOMAIN-SUFFIX,1lib.eu
+  - DOMAIN-SUFFIX,1lib.limited
+  - DOMAIN-SUFFIX,1lib.pl
+  - DOMAIN-SUFFIX,1lib.to
+  - DOMAIN-SUFFIX,1lib.tw
+  - DOMAIN-SUFFIX,2lib.org
+  - DOMAIN-SUFFIX,3lib.net
+  - DOMAIN-SUFFIX,art1lib.com
+  - DOMAIN-SUFFIX,b-ok.africa
+  - DOMAIN-SUFFIX,b-ok.asia
+  - DOMAIN-SUFFIX,b-ok.cc
+  - DOMAIN-SUFFIX,b-ok.global
+  - DOMAIN-SUFFIX,b-ok.org
+  - DOMAIN-SUFFIX,book4you.org
+  - DOMAIN-SUFFIX,bookfi.net
+  - DOMAIN-SUFFIX,booksc.eu
+  - DOMAIN-SUFFIX,booksc.me
+  - DOMAIN-SUFFIX,booksc.org
+  - DOMAIN-SUFFIX,booksc.xyz
+  - DOMAIN-SUFFIX,bookshome.info
+  - DOMAIN-SUFFIX,bookshome.net
+  - DOMAIN-SUFFIX,bookshome.world
+  - DOMAIN-SUFFIX,de1lib.org
+  - DOMAIN-SUFFIX,hk1lib.org
+  - DOMAIN-SUFFIX,ma1lib.org
+  - DOMAIN-SUFFIX,sci-hub.tw
+  - DOMAIN-SUFFIX,sg1lib.org
+  - DOMAIN-SUFFIX,singlelogin.app
+  - DOMAIN-SUFFIX,singlelogin.me
+  - DOMAIN-SUFFIX,z-lib.org
+  - DOMAIN-SUFFIX,zlib.life
+  - DOMAIN-SUFFIX,zlibcdn.com
+  - DOMAIN-SUFFIX,zlibcdn2.com
+
+  ## --------------------------------------------------------------
+  ## Part 2: 建议使用代理以提升速度和稳定性的网站 (Proxy for Speed & Stability)
+  ## --------------------------------------------------------------
+
+  - DOMAIN-SUFFIX,eproofing.springer.com # 斯普林格 (Springer) 校对系统
+
+  # 学术工具与服务 (服务器在境外，代理可显著提升速度和体验)
+  - DOMAIN-SUFFIX,altmetric.com       # 论文影响力追踪
+  - DOMAIN-SUFFIX,deepl.com           # 高质量翻译工具
+  - DOMAIN-SUFFIX,deepdyve.com        # 文献租赁服务
+  - DOMAIN-SUFFIX,endnote.com         # 文献管理工具
+  - DOMAIN-SUFFIX,libguides.com       # 研究指南工具
+  - DOMAIN-SUFFIX,readcube.com        # 文献管理工具
+  - DOMAIN-SUFFIX,researchgate.net    # 科研人员社交网络，直连慢
+  - DOMAIN-SUFFIX,turnitin.com        # 论文查重服务
+  - DOMAIN-SUFFIX,zotero.org          # 开源文献管理工具，同步需要代理
+
+  # 预印本、开放获取及AI学术平台 (直连下载/访问慢)
+  - DOMAIN-SUFFIX,aclweb.org
+  - DOMAIN-SUFFIX,arxiv.org           # 物理、数学等学科预印本服务器
+  - DOMAIN-SUFFIX,biorxiv.org         # 生物学预印本服务器
+  - DOMAIN-SUFFIX,elifesciences.org
+  - DOMAIN-SUFFIX,europepmc.org
+  - DOMAIN-SUFFIX,isca-speech.org
+  - DOMAIN-SUFFIX,jmlr.org
+  - DOMAIN-SUFFIX,mdpi.com            # Open Access 出版商, 代理访问速度更佳
+  - DOMAIN-SUFFIX,scholarpedia.org
+  - DOMAIN-SUFFIX,semanticscholar.org # AI驱动的学术搜索引擎
+
+  # 境外大学/研究机构官网 (常因嵌入Google等被墙资源导致加载缓慢或不全)
+  - DOMAIN-SUFFIX,berkeley.edu
+  - DOMAIN-SUFFIX,csiro.au
+  - DOMAIN-SUFFIX,ic.ac.uk
+  - DOMAIN-SUFFIX,imperial.ac.uk
+  - DOMAIN-SUFFIX,imperial.insendi.com
+  - DOMAIN-SUFFIX,imperialbusiness.school
+  - DOMAIN-SUFFIX,jhu.edu
+  - DOMAIN-SUFFIX,mit.edu
+  - DOMAIN-SUFFIX,mit.net
+  - DOMAIN-SUFFIX,mpg.de
+  - DOMAIN-SUFFIX,ox.ac.uk
+  - DOMAIN-SUFFIX,princeton.edu
+  - DOMAIN-SUFFIX,uchicago.edu
+  - DOMAIN-SUFFIX,ucla.edu
+  - DOMAIN-SUFFIX,umass.edu
+  - DOMAIN-SUFFIX,uni-bielefeld.de
+  - DOMAIN-SUFFIX,uq.edu.au
+  - DOMAIN-SUFFIX,uq.h5p.com
+  - DOMAIN-SUFFIX,yale.edu
+
+  # 国际组织与资讯网站 (直连可能不稳定或有内容无法加载)
+  - DOMAIN-SUFFIX,imf.org             # 国际货币基金组织
+  - DOMAIN-SUFFIX,oecd-ilibrary.org   # 经济合作与发展组织
+  - DOMAIN-SUFFIX,scientificamerican.com # 《科学美国人》杂志
+  - DOMAIN-SUFFIX,sipriyearbook.org   # 斯德哥尔摩国际和平研究所
+  - DOMAIN-SUFFIX,un.org              # 联合国
+  - DOMAIN-SUFFIX,worldbank.org       # 世界银行
+
+  ## --------------------------------------------------------------
+  ## Part 3: 特殊情况与其它 (Special Cases & Others)
+  ## --------------------------------------------------------------
+
+  # [重要] DOI 解析服务 (可能与学校IP认证冲突)
+  # 代理此域名可加速解析, 但它会跳转到出版商网站。
+  # 如果出版商网站需要学校IP认证, 代理可能导致认证失败。
+  # 若发现无法下载文献, 请尝试注释掉下面这一行。
+  - DOMAIN-SUFFIX,doi.org
+
+  # 其它
+  - DOMAIN-SUFFIX,ggsrv.com           # 内容分发或追踪服务, 可能影响部分网站功能
+  - DOMAIN-SUFFIX,lawdata.com.tw      # 台湾地区的法律数据库
+  - DOMAIN-SUFFIX,madsrevolution.net  # 个人博客/网站

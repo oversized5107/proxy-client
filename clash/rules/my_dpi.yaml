@@ -1,0 +1,29 @@
+payload:
+  # DPI 防检测
+  # === DPI防检测, 加密常用端口 ===
+  - DST-PORT,53,80
+  - DST-PORT,80
+  - DST-PORT,8000-9090
+
+  # === DPI防检测, 加密IM和推送服务端口 ===
+  - DST-PORT,5222  # XMPP/Google Talk/WhatsApp
+  - DST-PORT,5223  # Apple推送通知服务 (APNs)
+  - DST-PORT,5228  # Google Play/Chrome同步/FCM
+  - DST-PORT,14000 # EA/Origin服务
+
+  # === DPI防检测, 捕获操作系统和应用连接测试 ===
+  # -- Google/Android --
+  - DOMAIN,connectivitycheck.gstatic.com
+  - DOMAIN,www.google-analytics.com
+  - DOMAIN,www.gstatic.com
+  # -- Apple/iOS/macOS --
+  - DOMAIN,captive.apple.com
+  # -- Microsoft --
+  - DOMAIN,www.msftconnecttest.com
+  # -- Others --
+  - DOMAIN,cp.cloudflare.com
+  - DOMAIN,detectportal.firefox.com
+  - DOMAIN,api.miwifi.com
+  - DOMAIN,connect.rom.miui.com
+  - DOMAIN,connectivitycheck.platform.hicloud.com
+  - DOMAIN,wifi.vivo.com.cn
