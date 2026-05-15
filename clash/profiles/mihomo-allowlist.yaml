@@ -202,9 +202,9 @@ rules:
   - DST-PORT,22,DIRECT                          # SSH 直连
   - RULE-SET,my_rules_proxy,🔰选择节点
   - RULE-SET,my_rules_direct,🇨🇳国内直连
-  - RULE-SET,reject,🛑拦截广告
 
   # 局域网与私有地址
+  - RULE-SET,reject,🛑拦截广告
   - RULE-SET,private,🇨🇳国内直连
   - RULE-SET,lancidr,🇨🇳国内直连
 
@@ -285,12 +285,12 @@ rule-anchor:
 # ================================================================
 rule-providers:
   # 自定义规则
-  my_dpi: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rules/my_dpi.yaml", <<: *classical}
-  my_tencent: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rules/my_tencent.yaml", <<: *classical}
-  my_rules_direct: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rules/my_rules_direct.yaml", <<: *classical}
-  my_rules_proxy: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rules/my_rules_proxy.yaml", <<: *classical}
-  my_scholar_direct: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rules/my_scholar_direct.yaml", <<: *classical}
-  my_scholar_proxy: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rules/my_scholar_proxy.yaml", <<: *classical}
+  my_dpi: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/custom/dpi.yaml", <<: *classical}
+  my_tencent: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/custom/tencent.yaml", <<: *classical}
+  my_rules_direct: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/custom/direct.yaml", <<: *classical}
+  my_rules_proxy: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/custom/proxy.yaml", <<: *classical}
+  my_scholar_direct: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/scholar/direct.yaml", <<: *classical}
+  my_scholar_proxy: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/scholar/proxy.yaml", <<: *classical}
 
   # MetaCubeX MRS 规则
   google: {url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs", <<: *domain}
@@ -339,6 +339,7 @@ rule-providers:
   # Loyalsoldier 规则
   reject: {url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt", <<: *domain_text}
   apple-cn: {url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt", <<: *domain_text}
+  icloud: {url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt", <<: *domain_text}
   google-cn: {url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt", <<: *domain_text}
   proxy: {url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt", <<: *domain_text}
   direct: {url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt", <<: *domain_text}

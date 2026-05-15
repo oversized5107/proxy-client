@@ -1,0 +1,106 @@
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
+  asn: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite
+
+
+# 自定义
+my_rules_direct: https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/custom/direct.yaml
+my_rules_proxy: https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/custom/proxy.yaml
+
+# 广告拦截 / 私有网络 / 局域网
+reject: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+private: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
+lancidr: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
+
+# 学术网站
+my_scholar_direct: https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/scholar/direct.yaml
+my_scholar_proxy: https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/scholar/proxy.yaml
+GlobalScholar: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GlobalScholar/GlobalScholar.yaml
+
+# 广告域名列表
+reject: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+
+# iCloud 域名列表
+icloud: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
+
+# Apple 在中国大陆可直连的域名列表
+apple: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
+
+# Google 在中国大陆可直连的域名列表（慎用）
+google: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
+
+# 代理域名列表
+proxy: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
+
+# 直连域名列表
+direct: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
+
+# 私有网络专用域名列表
+private: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
+
+# GFWList 域名列表
+gfw: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt
+
+# 非中国大陆使用的顶级域名列表
+tld-not-cn: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt
+
+# Telegram 使用的 IP 地址列表
+telegramcidr: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
+
+# 中国大陆 IP 地址列表
+cncidr: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
+
+# 局域网 IP 及保留 IP 地址列表
+lancidr: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
+
+# 需要直连的常见软件列表
+applications: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
+
+
+# 云盘
+GEOSITE:category-netdisk-cn
+GEOSITE:category-netdisk-!cn
+
+# 流媒体 / 娱乐
+GEOSITE:category-media-cn
+GEOSITE:category-entertainment-cn
+GEOSITE:category-media@!cn
+GEOSITE:category-entertainment@!cn
+
+# 主要厂商
+GEOSITE:google-cn
+GEOSITE:google
+GEOSITE:apple-cn
+GEOSITE:apple
+GEOSITE:microsoft
+
+# AI
+GEOSITE:category-ai-cn
+GEOSITE:category-ai-!cn
+
+# 游戏平台
+GEOSITE:category-games-cn
+GEOSITE:category-games-!cn
+
+# 开发服务
+GEOSITE:category-dev-cn
+GEOSITE:category-dev@!cn
+
+# 社交 / 通讯 / 论坛
+GEOSITE:category-social-media-cn
+GEOSITE:category-social-media-!cn
+
+GEOSITE:category-communication@!cn
+GEOSITE:category-forums@!cn
+
+
+# cloudflare
+GEOSITE:cloudflare-cn
+GEOSITE:cloudflare
+
+# 国内网站
+GEOSITE:cn
+
+GEOIP:cn

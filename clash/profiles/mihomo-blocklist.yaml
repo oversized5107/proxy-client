@@ -1,0 +1,294 @@
+# ================================================================
+# 基础网络配置
+# ================================================================
+port: 7890                    # HTTP 代理端口
+socks-port: 7891              # SOCKS5 代理端口
+redir-port: 7892              # 透明代理端口
+mixed-port: 7893              # 混合代理端口
+tproxy-port: 7895             # TProxy 端口
+
+# 认证配置
+authentication:
+  - mihomo:mihomo
+
+skip-auth-prefixes:
+  - 192.168.1.0/24
+  - 192.168.31.0/24
+  - 192.168.100.0/24
+  - 127.0.0.1/8
+
+allow-lan: true               # 允许局域网连接
+mode: rule                    # 运行模式：rule / global / direct
+log-level: warning            # 日志级别
+ipv6: true                    # 启用 IPv6
+
+# ================================================================
+# 高级功能配置
+# ================================================================
+keep-alive-interval: 1800     # TCP Keep Alive 间隔
+keep-alive-idle: 600          # TCP Keep Alive 空闲时间
+# disable-keep-alive: false   # 禁用 TCP Keep Alive；Android 上会被强制设为 true
+
+find-process-mode: strict     # 进程匹配模式：off / strict / always
+
+external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+external-ui-name: zashboard
+external-ui: ui
+external-controller: 127.0.0.1:9090
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+unified-delay: true
+tcp-concurrent: true
+global-client-fingerprint: random
+
+geodata-mode: true
+geodata-loader: memconservative
+geo-auto-update: true
+geo-update-interval: 48       # 更新间隔，单位为小时
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
+  asn: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
+
+global-ua: FFFFFFFFF
+
+# ================================================================
+# Tun 配置
+# ================================================================
+tun:
+  enable: false
+  stack: mixed
+  device: utun-mihomo
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  strict-route: true
+  endpoint-independent-nat: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+
+# ================================================================
+# DNS 配置
+# ================================================================
+bootstrap_dns_servers: &bootstrap_dns_servers ["114.114.114.114", "1.2.4.8", "119.29.29.29", "223.5.5.5", "223.6.6.6", "2400:3200::1", "2400:3200:baba::1"]
+global_dns_servers: &global_dns_servers ["https://cloudflare-dns.com/dns-query", "tls://one.one.one.one", "https://dns.google/dns-query", "tls://dns.google"]
+cn_dns_servers: &cn_dns_servers ["system", "quic://dns.alidns.com", "https://dns.alidns.com/dns-query#h3=true", "tls://dns.alidns.com", "https://doh.pub/dns-query", "tls://dot.pub"]
+
+dns:
+  enable: true
+  cache-algorithm: arc
+  ipv6: true
+  use-hosts: true
+  use-system-hosts: true
+  enhanced-mode: redir-host
+  respect-rules: true
+  default-nameserver: *bootstrap_dns_servers
+  proxy-server-nameserver: *cn_dns_servers
+  direct-nameserver: *cn_dns_servers
+  nameserver: *global_dns_servers
+
+hosts:
+  miwifi.com: "192.168.31.1"
+  dns.alidns.com: ["223.5.5.5", "223.6.6.6", "2400:3200::1", "2400:3200:baba::1"]
+  doh.pub: ["1.12.12.12", "1.12.12.21", "120.53.53.53"]
+  dot.pub: ["1.12.12.12", "1.12.12.21", "120.53.53.53"]
+  dns.google: ["8.8.8.8", "8.8.4.4", "2001:4860:4860::8888", "2001:4860:4860::8844"]
+  cloudflare-dns.com: ["1.1.1.1", "1.0.0.1", "2606:4700:4700::1111", "2606:4700:4700::1001"]
+  one.one.one.one: ["1.1.1.1", "1.0.0.1", "2606:4700:4700::1111", "2606:4700:4700::1001"]
+
+# ================================================================
+# 流量嗅探配置 - 透明代理 / 软路由 / TProxy 推荐
+# ================================================================
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+
+force-domain:
+  [
+    "+.netflix.com", "+.nflxvideo.net", "+.nflxext.com", "+.nflximg.net", "+.nflxso.net", "+.nflxsearch.net",
+    "+.disneyplus.com", "+.disney-plus.net", "+.bamgrid.com", "+.dssott.com", "+.media.dssott.com",
+    "+.youtube.com", "+.googlevideo.com", "+.ytimg.com",
+    "+.primevideo.com", "+.pv-cdn.net", "+.video.a2z.com",
+    "+.max.com", "+.hbomax.com", "+.hbo.com",
+    "+.spotify.com", "+.scdn.co",
+    "+.tiktok.com", "+.tiktokcdn.com", "+.byteoversea.com"
+  ]
+
+skip-domain:
+  [
+    "Mijia Cloud", "dlg.io.mi.com", "+.mi.com", "+.xiaomi.com", "+.miot-spec.org",
+    "+.push.apple.com", "push.apple.com", "+.push-apple.com.akadns.net",
+    "+.oray.com", "+.sunlogin.net", "+.teamviewer.com", "+.anydesk.com",
+    "localhost.ptlogin2.qq.com", "+.local", "+.lan"
+  ]
+
+# ================================================================
+# 代理提供商模板
+# ================================================================
+# providers_template: &providers_template {type: http, interval: 18000, header: {User-Agent: ["mihomo/1.18.3"]}, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300, timeout: 5000, lazy: true, expected-status: 204}}
+
+# ================================================================
+# 代理提供商
+# ================================================================
+# proxy-providers:
+#   provider-1: {url: "你的订阅链接-1", path: ./providers/provider-1.yaml, <<: *providers_template}
+#   provider-2: {url: "你的订阅链接-2", path: ./providers/provider-2.yaml, <<: *providers_template}
+#   provider-3: {url: "你的订阅链接-3", path: ./providers/provider-3.yaml, <<: *providers_template}
+
+# ================================================================
+# 代理组模板与锚点
+# ================================================================
+proxy_groups: &proxy_groups {type: select, include-all: true, proxies: ['🔰选择节点', DIRECT, '♻️自动选择', '🇭🇰香港-自动', '🇸🇬新加坡-自动', '🇯🇵日本-自动', '🇰🇷韩国-自动', '🇺🇸美国-自动', '🇹🇼台湾-自动', '🇬🇧英国-自动', '🇹🇷土耳其-自动']}
+
+direct_groups: &direct_groups {type: select, include-all: true, proxies: [DIRECT, '🔰选择节点', '♻️自动选择', '🇭🇰香港-自动', '🇸🇬新加坡-自动', '🇯🇵日本-自动', '🇰🇷韩国-自动', '🇺🇸美国-自动', '🇹🇼台湾-自动', '🇬🇧英国-自动', '🇹🇷土耳其-自动']}
+
+auto_select: &auto_select {type: url-test, interval: 300, tolerance: 50, url: "https://cp.cloudflare.com", timeout: 5000, max-failed-times: 5}
+
+# ================================================================
+# 地区筛选锚点
+# ================================================================
+hk_filter: &hk_filter '(?i)港|HK|Hong Kong|HongKong|HKG|深港|🇭🇰'
+sg_filter: &sg_filter '(?i)新加坡|坡|狮城|SG|Singapore|SIN|🇸🇬'
+jp_filter: &jp_filter '(?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|(?<!尼|-)日|JP|Japan|NRT|HND|KIX|🇯🇵'
+kr_filter: &kr_filter '(?i)韩|韩国|韓|首尔|KR|KOR|Korea|Seoul|🇰🇷'
+us_filter: &us_filter '(?i)美|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|纽约|圣何塞|圣克拉拉|西雅图|芝加哥|US|USA|United States|UnitedStates|LAX|SFO|SJC|JFK|SEA|🇺🇸'
+tw_filter: &tw_filter '(?i)台|台湾|新北|彰化|TW|Taiwan|TPE|KHH|🇹🇼'
+uk_filter: &uk_filter '(?i)英|英国|伦敦|UK|GB|Great Britain|United Kingdom|London|LHR|🇬🇧'
+tr_filter: &tr_filter '(?i)土耳其|Turkey|Türkiye|TR|Istanbul|🇹🇷'
+
+# ================================================================
+# 代理组定义
+# ================================================================
+proxy-groups:
+  # 核心策略分组
+  - {name: "🔰选择节点", type: select, include-all: true, proxies: ['🇭🇰香港-自动', '🇸🇬新加坡-自动', '🇯🇵日本-自动', '🇰🇷韩国-自动', '🇺🇸美国-自动', '🇹🇼台湾-自动', '🇬🇧英国-自动', '🇹🇷土耳其-自动', '♻️自动选择', DIRECT]}
+  - {name: "📟Google", <<: *proxy_groups}
+  - {name: "🗄️Microsoft", <<: *proxy_groups}
+  - {name: "🍎Apple", <<: *proxy_groups}
+  - {name: "📁国外云盘", <<: *proxy_groups}
+  - {name: "🤖AI服务", <<: *proxy_groups}
+  - {name: "🎮游戏平台", <<: *proxy_groups}
+  - {name: "📲社交媒体", <<: *proxy_groups}
+  - {name: "📕学术网站", <<: *direct_groups}
+  - {name: "💻开发平台", <<: *proxy_groups}
+  - {name: "🌩️Cloudflare", <<: *proxy_groups}
+  - {name: "🇨🇳国内直连", <<: *direct_groups}
+  - {name: "🛑拦截广告", type: select, proxies: [REJECT, DIRECT, '🔰选择节点', '♻️自动选择']}
+  - {name: "🐟漏网之鱼", <<: *proxy_groups}
+
+  # 隐藏策略分组
+  - {name: "♻️自动选择", <<: *auto_select, include-all: true, hidden: true}
+  - {name: DNS, type: select, proxies: ['🔰选择节点'], hidden: true}
+
+  # 地区自动选择分组
+  - {name: "🇭🇰香港-自动", <<: *auto_select, include-all: true, filter: *hk_filter, hidden: true}
+  - {name: "🇸🇬新加坡-自动", <<: *auto_select, include-all: true, filter: *sg_filter, hidden: true}
+  - {name: "🇯🇵日本-自动", <<: *auto_select, include-all: true, filter: *jp_filter, hidden: true}
+  - {name: "🇰🇷韩国-自动", <<: *auto_select, include-all: true, filter: *kr_filter, hidden: true}
+  - {name: "🇺🇸美国-自动", <<: *auto_select, include-all: true, filter: *us_filter, hidden: true}
+  - {name: "🇹🇼台湾-自动", <<: *auto_select, include-all: true, filter: *tw_filter, hidden: true}
+  - {name: "🇬🇧英国-自动", <<: *auto_select, include-all: true, filter: *uk_filter, hidden: true}
+  - {name: "🇹🇷土耳其-自动", <<: *auto_select, include-all: true, filter: *tr_filter, hidden: true}
+
+# ================================================================
+# 路由规则
+# ================================================================
+rules:
+  # 自定义规则
+  - DST-PORT,123,DIRECT                         # NTP：配合 nftables / iptables 将时间同步流量重定向到路由器
+  - DST-PORT,22,DIRECT                          # SSH 直连
+  - RULE-SET,my_rules_proxy,🔰选择节点
+  - RULE-SET,my_rules_direct,🇨🇳国内直连
+
+  # 私有网络 / 局域网
+  - RULE-SET,private,🇨🇳国内直连
+  - RULE-SET,lancidr,🇨🇳国内直连
+
+  # 学术期刊
+  - RULE-SET,my_scholar_proxy,🔰选择节点
+  - RULE-SET,my_scholar_direct,📕学术网站
+  - RULE-SET,GlobalScholar,📕学术网站
+
+  # 国外云盘
+  - GEOSITE,category-netdisk-!cn,📁国外云盘
+
+  # 流媒体 / 娱乐
+  - GEOSITE,category-media@!cn,📲社交媒体
+  - GEOSITE,category-entertainment@!cn,📲社交媒体
+
+  # 主要厂商
+  - GEOSITE,google,📟Google
+  - GEOSITE,apple,🍎Apple
+  - GEOSITE,microsoft,🗄️Microsoft
+
+  # AI 服务
+  - GEOSITE,category-ai-!cn,🤖AI服务
+
+  # 游戏平台
+  - GEOSITE,category-games-!cn,🎮游戏平台
+
+  # 开发服务
+  - GEOSITE,category-dev@!cn,💻开发平台
+
+  # 社交 / 通讯 / 论坛
+  - GEOSITE,category-communication@!cn,📲社交媒体
+  - GEOSITE,category-forums@!cn,📲社交媒体
+  - GEOSITE,category-social-media-!cn,📲社交媒体
+
+  # Cloudflare
+  - GEOSITE,cloudflare,🌩️Cloudflare
+
+  # 常规代理规则
+  - RULE-SET,proxy,🔰选择节点
+  - RULE-SET,tld-not-cn,🔰选择节点
+  - RULE-SET,gfw,🔰选择节点
+
+  # 兜底规则
+  - MATCH,🇨🇳国内直连
+
+# ================================================================
+# 规则集提供者模板
+# ================================================================
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  classical: &classical {type: http, interval: 86400, behavior: classical, format: yaml}
+  ip_text: &ip_text {type: http, interval: 86400, behavior: ipcidr}
+  domain_text: &domain_text {type: http, interval: 86400, behavior: domain}
+
+# ================================================================
+# 规则集提供者
+# ================================================================
+rule-providers:
+  # 自定义规则
+  my_dpi: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/custom/dpi.yaml", <<: *classical}
+  my_tencent: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/custom/tencent.yaml", <<: *classical}
+  my_rules_direct: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/custom/direct.yaml", <<: *classical}
+  my_rules_proxy: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/custom/proxy.yaml", <<: *classical}
+  my_scholar_direct: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/scholar/direct.yaml", <<: *classical}
+  my_scholar_proxy: {url: "https://testingcf.jsdelivr.net/gh/oversized5107/proxy-client@main/clash/rulesets/scholar/proxy.yaml", <<: *classical}
+
+  # blackmatrix7 规则
+  GlobalScholar: {url: "https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GlobalScholar/GlobalScholar.yaml", <<: *classical}
+
+  # Loyalsoldier 规则
+  private: {url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt", <<: *domain_text}
+  proxy: {url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt", <<: *domain_text}
+  gfw: {url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt", <<: *domain_text}
+  tld-not-cn: {url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt", <<: *domain_text}
+  lancidr: {url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt", <<: *ip_text}

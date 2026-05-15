@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - clash/overwrite/openclash.src.yaml
+      - clash/profiles/openclash.src.yaml
       - scripts/expand_yaml_anchors.py
       - .github/workflows/expand-openclash.yaml
   workflow_dispatch:
@@ -34,9 +34,9 @@ jobs:
 
       - name: Commit generated config
         run: |
-          git add clash/overwrite/openclash.yaml
+          git add clash/generated/openclash.yaml
 
-          if git diff --cached --quiet -- clash/overwrite/openclash.yaml; then
+          if git diff --cached --quiet -- clash/generated/openclash.yaml; then
             echo "No generated changes."
             exit 0
           fi
