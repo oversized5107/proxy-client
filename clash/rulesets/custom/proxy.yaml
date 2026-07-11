@@ -1,4 +1,5 @@
 payload:
+  - DOMAIN,anyrouter.top
 # ------------------------------ 国外 DNS -----------------------------------------------------#
   - DOMAIN,1dot1dot1dot1.cloudflare-dns.com
   - DOMAIN,8888.google
